@@ -1,0 +1,25 @@
+name: Django Runserver
+
+on:
+  push:
+    branches:
+      - main  # Adjust this branch name as needed
+
+jobs:
+  runserver:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11  # Replace '3.x' with your desired Python version
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Django development server
+        run: python markify/manage.py runserver 0.0.0.0:8000
